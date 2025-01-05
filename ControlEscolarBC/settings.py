@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-x0le-29km5uowv3s1#_6t0qj-728=4)m#xfyiz17)mv6@gek45
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'controlescolar.onrender.com').split(',')
 
 
 # Application definition
@@ -78,12 +78,7 @@ WSGI_APPLICATION = 'ControlEscolarBC.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME':'GestionAcademica.db',
-#     }
-# }
+
 # BDD DE POSGRET
 DATABASES = {
     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))  
@@ -125,12 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'ControlEscolarBC/static')]
-# VALIDACION
-if not DEBUG:
-    STATICFILES_ROOT = os.path.join(BASE_DIR,'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

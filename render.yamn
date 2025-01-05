@@ -1,0 +1,23 @@
+databases:
+  - name: escolardb
+    plan: free
+    databaseName: escolardb
+    user: escolardb_user
+
+services:
+  - type: web
+    name: ControlEscolaBC
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn ControlEscolaBC.asgi:application -k uvicorn.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: escolardb
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: controlescolar.onrender.com
+
+        #set DATEBASE_URL=postgresql://escolardb_user:hjZHgvPpkuL5B5ZzHnX03Sm3jetov9oQ@dpg-ctta663v2p9s738grlag-a.oregon-postgres.render.com/escolardb
